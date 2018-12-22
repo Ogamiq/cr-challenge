@@ -29,22 +29,26 @@ def draw_kids_and_school_plot(kids_coordinates, school_coordinates, plot_name='k
     trace_kids = go.Scatter(
       x=[kid_coordinates[0] for kid_coordinates in kids_coordinates],
       y=[kid_coordinates[1] for kid_coordinates in kids_coordinates],
+      name='Kids',
+      marker={'color': 'blue', 'symbol': 'circle', 'size': 3},
       mode='markers'
     )
     trace_school = go.Scatter(
       x=[school_coordinates[0]],
       y=[school_coordinates[1]],
-      marker={'color': 'red', 'symbol': 'square', 'size': 20},
+      name='School',
+      marker={'color': 'red', 'symbol': 'square', 'size': 10},
       mode='markers'
     )
     data = [trace_kids, trace_school]
-    py.plot(data, filename=plot_name)
+    layout = {'title': plot_name}
+    py.plot(data, filename=plot_name, layout=layout)
   
 
 if __name__ == "__main__":
-  kids_coordinates = spawn_kids_coordinates(kids_number=500, square_plane_boundaries=[-1000, 1000])
+  kids_coordinates = spawn_kids_coordinates(kids_number=200, square_plane_boundaries=[-500, 500])
   school_location = find_optimal_school_location(kids_coordinates)
-  draw_kids_and_school_plot(kids_coordinates, school_location, 'kids-school-plot-3')
+  draw_kids_and_school_plot(kids_coordinates, school_location, 'kids-school-plot-5')
 
 
   
